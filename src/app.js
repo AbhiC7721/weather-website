@@ -1,10 +1,10 @@
+const path = require('path')
 const express = require('express')
 
 const app = express()
+const publicDirectoryPath = path.join(__dirname, '../public')
 
-app.get('', (req, res) => {
-    res.send('<h1>Weather</h1>')
-})
+app.use(express.static(publicDirectoryPath))
 
 app.get('/help', (req, res) => {
     res.send([{
@@ -24,10 +24,6 @@ app.get('/weather', (req, res) => {
         forecast: "The temperature is 50 degrees"
     })
 })
-
-// app.com
-// app.com/help
-// app.com/about
 
 app.listen(3000, () => {
     console.log('Server is up on port 3000.')
